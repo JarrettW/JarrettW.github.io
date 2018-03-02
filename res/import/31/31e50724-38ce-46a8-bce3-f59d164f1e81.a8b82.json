@@ -1,0 +1,1 @@
+{"__type__":"cc.AnimationClip","_name":"upgradeAnim","_duration":0.75,"sample":20,"curveData":{"props":{"scaleX":[{"frame":0,"value":1},{"frame":0.75,"value":4}],"scaleY":[{"frame":0,"value":1},{"frame":0.75,"value":4}],"opacity":[{"frame":0,"value":255},{"frame":0.75,"value":0}]}}}

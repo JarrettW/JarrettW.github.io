@@ -1,0 +1,1 @@
+{"__type__":"cc.AnimationClip","_name":"jlp","_duration":0.7,"sample":10,"curveData":{"paths":{"lp":{"props":{"position":[{"frame":0,"value":[0,0]},{"frame":0.7,"value":[142,49]}],"scaleX":[{"frame":0,"value":0.7},{"frame":0.7,"value":1.1}],"scaleY":[{"frame":0,"value":0.7},{"frame":0.7,"value":1.1}],"opacity":[{"frame":0,"value":255},{"frame":0.7,"value":0}]}}}}}
