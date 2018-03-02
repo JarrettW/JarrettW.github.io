@@ -139,9 +139,9 @@
 
                     console.log('Success to load scene: ' + launchScene);
 
-                    h5api.initGame(100053753, "点墨三国-三分天下", 640, 1136);
-                    h5api.progress(100, "游戏加载中...");
-                    h5api.moreGame();
+                    // h5api.initGame(100053753, "点墨三国-三分天下", 640, 1136);
+                    // h5api.progress(100, "游戏加载中...");
+                    // h5api.moreGame();
                 }
             );
         };
