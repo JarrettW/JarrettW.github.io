@@ -43,6 +43,11 @@ blockquote {
 
 #footer {
 	border-color: #073642;
+	position:absolute;
+	bottom:0;
+	/*width:100%;
+	height:100px;
+	background-color: #ffc0cb;*/
 }
 
 
