@@ -137,7 +137,7 @@
                     // play game
                     // cc.game.resume();
 
-                    console.log('Success to load scene: ' + launchScene);
+                    // console.log('Success to load scene: ' + launchScene);
                 }
             );
         };

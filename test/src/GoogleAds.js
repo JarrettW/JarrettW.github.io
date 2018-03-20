@@ -48,11 +48,11 @@ function setUpIMA() {
   adsRequest.forceNonLinearFullSlot = true;
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
   // select the correct creative if multiple are returned.
-  adsRequest.linearAdSlotWidth = 530;
-  adsRequest.linearAdSlotHeight = 400;
+  adsRequest.linearAdSlotWidth = 650;
+  adsRequest.linearAdSlotHeight = 500;
 
-  adsRequest.nonLinearAdSlotWidth = 530;
-  adsRequest.nonLinearAdSlotHeight = 150;
+  adsRequest.nonLinearAdSlotWidth = 650;
+  adsRequest.nonLinearAdSlotHeight = 250;
 
   adsLoader.requestAds(adsRequest);
 }
@@ -69,14 +69,16 @@ function playAds() {
   adDisplayContainer.initialize();
 
   try {
+    // var width = document.getElementById("GameCanvas").width / 2.763;
+    var height = document.getElementById("GameCanvas").height;
     // Initialize the ads manager. Ad rules playlist will start at this time.
-    adsManager.init(533, 944, google.ima.ViewMode.NORMAL);
+    adsManager.init(655, height, google.ima.ViewMode.NORMAL);
     // Call play to start showing the ad. Single video and overlay ads will
     // start at this time; the call will be ignored for ad rules.
     adsManager.start();
   } catch (adError) {
     // An error may be thrown if there was a problem with the VAST response.
-    console.log("错误,关闭广告容器");
+    // console.log("错误,关闭广告容器");
     GlobalEvent.emit("AdError");
   }
 }
@@ -131,13 +133,13 @@ function onAdEvent(adEvent) {
   var ad = adEvent.getAd();
   switch (adEvent.type) {
     case google.ima.AdEvent.Type.CLICK:
-      console.log("点击广告");
+      // console.log("点击广告");
       break;
     case google.ima.AdEvent.Type.SKIPPED:
-      console.log("跳过广告");
+      // console.log("跳过广告");
       break;
     case google.ima.AdEvent.Type.USER_CLOSE:
-      console.log("用户关闭广告");
+      // console.log("用户关闭广告");
       GlobalEvent.emit("AdsOver");
       break;
     case google.ima.AdEvent.Type.LOADED:
@@ -176,7 +178,7 @@ function onAdEvent(adEvent) {
 
 function onAdError(adErrorEvent) {
   // Handle the error logging.
-  console.log("错误了: " + adErrorEvent.getError());
+  // console.log("错误了: " + adErrorEvent.getError());
   GlobalEvent.emit("AdError");
   if(adsManager){
     adsManager.destroy();
