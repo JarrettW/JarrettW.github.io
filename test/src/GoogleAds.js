@@ -71,7 +71,7 @@ function playAds() {
   try {
     var width = document.getElementById("GameCanvas").width;
     if(cc.sys.isMobile){
-      console.log("手机平台");
+      
     }else{
       width /= 2.763;
       if(width < 655){
@@ -86,6 +86,7 @@ function playAds() {
     //广告容器位置相关设置(浏览器窗口变化,广告容器始终居中)
     if(cc.sys.isMobile){
       adContainer.style.left = "0px";
+      adContainer.style.top = "0px";
     }else{
       var temp = (document.body.clientWidth - width) / 2;
       adContainer.style.left = temp + "px";
