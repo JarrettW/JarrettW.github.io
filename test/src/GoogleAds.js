@@ -69,18 +69,27 @@ function playAds() {
   adDisplayContainer.initialize();
 
   try {
-    var width = document.getElementById("GameCanvas").width / 2.763;
-    if(width < 655){
-      width = 655;
-    }
+    var width = document.getElementById("GameCanvas").width;
+    if(cc.sys.isMobile){
+      console.log("手机平台");
+    }else{
+      width /= 2.763;
+      if(width < 655){
+        width = 655;
+      }
+    }    
     var height = document.getElementById("GameCanvas").height;
 
     // Initialize the ads manager. Ad rules playlist will start at this time.
     adsManager.init(width, height, google.ima.ViewMode.NORMAL);
+
     //广告容器位置相关设置(浏览器窗口变化,广告容器始终居中)
-    // console.log("document.body.clientWidth: " + document.body.clientWidth);
-    var temp = (document.body.clientWidth - width) / 2;
-    adContainer.style.left = temp + "px";
+    if(cc.sys.isMobile){
+      adContainer.style.left = "0px";
+    }else{
+      var temp = (document.body.clientWidth - width) / 2;
+      adContainer.style.left = temp + "px";
+    }
 
     // Call play to start showing the ad. Single video and overlay ads will
     // start at this time; the call will be ignored for ad rules.
