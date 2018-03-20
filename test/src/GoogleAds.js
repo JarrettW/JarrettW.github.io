@@ -69,11 +69,11 @@ function playAds() {
   adDisplayContainer.initialize();
 
   try {
-    var width = document.getElementById("GameCanvas").width;
+    var width = 320;
     if(cc.sys.isMobile){
-      
+      width = document.getElementById("GameCanvas").width;
     }else{
-      width /= 2.763;
+      width = document.getElementById("GameCanvas").width / 2.763;
       if(width < 655){
         width = 655;
       }
