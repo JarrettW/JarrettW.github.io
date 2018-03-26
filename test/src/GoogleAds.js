@@ -9,6 +9,8 @@ var adDisplayContainer;
 var intervalTimer;
 var videoContent;
 var adContainer;
+var width;
+var height;
 
 function init(videoPlayer, divContainer) {
   videoContent = videoPlayer;
@@ -17,6 +19,9 @@ function init(videoPlayer, divContainer) {
 }
 
 function setUpIMA() {
+  width = document.getElementById("GameCanvas").width;
+  height = document.getElementById("GameCanvas").height;
+  
   // Create the ad display container.
   createAdDisplayContainer();
   // Create ads loader.
@@ -48,10 +53,6 @@ function setUpIMA() {
   adsRequest.forceNonLinearFullSlot = true;
   // Specify the linear and nonlinear slot sizes. This helps the SDK to
   // select the correct creative if multiple are returned.
-
-  var width = document.getElementById("GameCanvas").width;
-  var height = document.getElementById("GameCanvas").height;
-
   adsRequest.linearAdSlotWidth = width;
   adsRequest.linearAdSlotHeight = height;
 
@@ -73,18 +74,8 @@ function playAds() {
   adDisplayContainer.initialize();
 
   try {
-    var width = document.getElementById("GameCanvas").width;
-    var height = document.getElementById("GameCanvas").height;
-    // var width = 320;
-    // if(cc.sys.isMobile){
-    //   width = document.getElementById("GameCanvas").width;
-    // }else{
-    //   width = document.getElementById("GameCanvas").width / 2.763;
-    //   if(width < 655){
-    //     width = 655;
-    //   }
-    // }
-    // var height = document.getElementById("GameCanvas").height;
+    width = document.getElementById("GameCanvas").width;
+    height = document.getElementById("GameCanvas").height;
 
     // Initialize the ads manager. Ad rules playlist will start at this time.
     adsManager.init(width, height, google.ima.ViewMode.NORMAL);
@@ -96,6 +87,8 @@ function playAds() {
     // }else{
       var temp = (document.body.clientWidth - width) / 2;
       adContainer.style.left = temp + "px";
+      videoContent.style.top = "0px";
+      adContainer.style.top = "0px"; 
     // }
 
     // Call play to start showing the ad. Single video and overlay ads will
@@ -103,7 +96,7 @@ function playAds() {
     adsManager.start();
   } catch (adError) {
     // An error may be thrown if there was a problem with the VAST response.
-    console.log("错误,关闭广告容器");
+    // console.log("错误,关闭广告容器");
     GlobalEvent.emit("AdError");
   }
 }
@@ -158,13 +151,13 @@ function onAdEvent(adEvent) {
   var ad = adEvent.getAd();
   switch (adEvent.type) {
     case google.ima.AdEvent.Type.CLICK:
-      console.log("点击广告");
+      // console.log("点击广告");
       break;
     case google.ima.AdEvent.Type.SKIPPED:
-      console.log("跳过广告");
+      // console.log("跳过广告");
       break;
     case google.ima.AdEvent.Type.USER_CLOSE:
-      console.log("用户关闭广告");
+      // console.log("用户关闭广告");
       GlobalEvent.emit("AdsOver");
       break;
     case google.ima.AdEvent.Type.LOADED:
@@ -203,7 +196,7 @@ function onAdEvent(adEvent) {
 
 function onAdError(adErrorEvent) {
   // Handle the error logging.
-  console.log("错误了: " + adErrorEvent.getError());
+  // console.log("错误了: " + adErrorEvent.getError());
   GlobalEvent.emit("AdError");
   if(adsManager){
     adsManager.destroy();
